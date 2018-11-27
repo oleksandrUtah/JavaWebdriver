@@ -6,13 +6,18 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class GoogleSearch {
     WebDriver driver;
-    By searchInput = By.cssSelector(".gLFyf");
+    String mainPage;
+    By searchInput;
+    String queryString;
+    By resultStats;
+    String expectedText;
 
     @BeforeSuite
     public void suiteSetup(){
@@ -20,13 +25,31 @@ public class GoogleSearch {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
+    @AfterSuite
+    public void terminateBrowser() {
+        driver.quit();
+    }
     @Test
     public void testHomeWork() {
         //TODO: automate search at Yahoo.com
+        mainPage = "https://www.yahoo.com/";
+        searchInput = By.id("uh-search-box");
+        queryString = "Portnov school";
+        resultStats = By.linkText("portnov school mountain view");
+        expectedText = "portnov school mountain view";
+
+        openMainPage();
+        typeQuery(queryString);
+        submitSearch();
+        assertResults();
     }
     @Test
     public void testSearch() {
-        String queryString = "Portnov school";
+        mainPage = "https://www.google.com";
+        searchInput = By.cssSelector(".gLFyf");
+        queryString = "Portnov school";
+        resultStats = By.id("resultStats");
+        expectedText = "About 196,000 results (0.40 seconds)";
 
         openMainPage();
         typeQuery(queryString);
@@ -35,7 +58,11 @@ public class GoogleSearch {
     }
     @Test
     public void testSearch02() {
-        String queryString = "Portnov Computer School";
+        mainPage = "https://www.google.com";
+        searchInput = By.cssSelector(".gLFyf");
+        queryString = "Portnov Computer School";
+        resultStats = By.id("resultStats");
+        expectedText = "About 196,000 results (0.40 seconds)";
 
         openMainPage();
         typeQuery(queryString);
@@ -43,11 +70,11 @@ public class GoogleSearch {
         assertResults();
     }
     private void assertResults() {
-        WebElement resultStatsElement = driver.findElement(By.id("resultStats"));
+        WebElement resultStatsElement = driver.findElement(resultStats);
         String textFromResults = resultStatsElement.getText();
 
         //TODO: change assertions
-        String expectedText = "About 196,000 results (0.40 seconds) ";
+
         String actualText = textFromResults;
         Assert.assertEquals(actualText, expectedText);
     }
@@ -60,7 +87,7 @@ public class GoogleSearch {
         element.sendKeys(queryString);
     }
     private void openMainPage() {
-        driver.get("https://www.google.com");
+        driver.get(mainPage);
     }
     public void sleepThread(){
         try {
@@ -71,6 +98,6 @@ public class GoogleSearch {
     }
     public void explicitWait(WebDriver driver){
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("resultStats")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(resultStats));
     }
 }
