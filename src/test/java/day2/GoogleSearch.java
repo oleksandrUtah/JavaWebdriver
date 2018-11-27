@@ -31,7 +31,7 @@ public class GoogleSearch {
     }
     @Test
     public void testHomeWork() {
-        //TODO: automate search at Yahoo.com
+        //TODO: automate search at Yahoo.com2
         mainPage = "https://www.yahoo.com/";
         searchInput = By.id("uh-search-box");
         queryString = "Portnov school";
