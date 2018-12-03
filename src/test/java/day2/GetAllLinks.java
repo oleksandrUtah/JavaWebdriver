@@ -10,8 +10,8 @@ public class GetAllLinks {
     WebDriver driver;
     @BeforeTest
     public void launchBrowser() {
-        String driverPath = "C:\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", driverPath);
+        String driverPath = "C:\\geckodriver.exe";
+        System.setProperty("webdriver.gecko.driver", driverPath);
         driver = new FirefoxDriver();
         driver.get(baseUrl);
     }
