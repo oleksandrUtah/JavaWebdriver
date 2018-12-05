@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
-import static day2.Tools.waitForPageLoaded;
+import day2.*;
 
 public class BasicAuth {
 
@@ -18,7 +18,7 @@ public class BasicAuth {
         System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "\\src\\test\\resources\\geckodriver.exe");
         driver = new FirefoxDriver();
         //driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        waitForPageLoaded(driver);
+        Tools.waitForPageLoaded(driver);
     }
     @Test
     public void testBasicAuth() {
