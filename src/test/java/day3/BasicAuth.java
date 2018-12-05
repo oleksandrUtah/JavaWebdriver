@@ -5,13 +5,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
 import java.util.concurrent.TimeUnit;
 
 public class BasicAuth {
 
     WebDriver driver;
-
 
     @BeforeSuite
     public void suiteSetup(){
@@ -19,8 +17,6 @@ public class BasicAuth {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
-
-
     @Test
     public void testBasicAuth() {
         String login = "admin";
