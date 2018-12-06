@@ -13,16 +13,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class YahooSearchTest {
-
-    WebDriver driver;
-
-    @BeforeSuite
-    public void suiteSetup(){
-        System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "\\src\\test\\resources\\geckodriver.exe");
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-    }
+public class YahooSearchTest extends BaseTest {
 
     @Test
     public void testSearch() {
