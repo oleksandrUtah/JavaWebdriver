@@ -1,4 +1,5 @@
 package day3;
+import day2.Tools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,6 +44,7 @@ public class YahooSearch {
     }
     private void openMainPage() {
         driver.get("https://www.yahoo.com/");
+        Tools.waitForPageLoaded(driver);
     }
 }
 
