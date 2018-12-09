@@ -3,9 +3,11 @@ package day4;
 import day2.Tools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import java.util.concurrent.TimeUnit;
 
@@ -35,5 +37,11 @@ public class BaseTest {
     }
     public String getTextFromElement(By element) {
         return driver.findElement(element).getText();
+    }
+    public void assertResults(String cssValue) {
+        By resultsElement = By.cssSelector(cssValue);
+        WebElement resultSpanElement = driver.findElement(resultsElement);
+        explicitWait(driver, resultsElement);
+        Assert.assertTrue(resultSpanElement.isDisplayed());
     }
 }

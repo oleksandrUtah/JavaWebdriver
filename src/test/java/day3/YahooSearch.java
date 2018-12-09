@@ -46,7 +46,7 @@ public class YahooSearch {
         explicitWait(driver, resultsElement);
         Assert.assertTrue(resultSpanElement.isDisplayed());
     }
-    public void explicitWait(WebDriver driver, By element){
+    private void explicitWait(WebDriver driver, By element){
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
