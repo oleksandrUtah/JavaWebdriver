@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -34,7 +36,19 @@ public class YahooSearch {
                 .findElement(By.className("compPagination")).findElement(By.tagName("span"));
         System.out.println(resultSpanElement.getText());
         //waitFor Element to be visible
+
+        String xpathValue = "";
+        //String cssValue = "div.compPagination span";// or:
+        //String cssValue = ".compPagination span"; //or:
+        String cssValue = "#results .compPagination span";
+        By resultsElement = By.cssSelector(cssValue);
+
+        explicitWait(driver, resultsElement);
         Assert.assertTrue(resultSpanElement.isDisplayed());
+    }
+    public void explicitWait(WebDriver driver, By element){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
     private void submitSearch() {
         driver.findElement(By.id("uh-search-box")).submit();
