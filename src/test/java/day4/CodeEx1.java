@@ -5,7 +5,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CodeEx1 {
-
     // given a string
     // check if string is a Palyndrom
     // madam
@@ -17,35 +16,25 @@ public class CodeEx1 {
                 { "asdfadsf"},
         };
     }
-
     @Test(dataProvider = "test1")
     public void testPalyndromeWithDP(String input) {
         Boolean result = isPalyndrom(input);
         Assert.assertTrue(result);
     }
-
-
     @Test()
     public void testPalyndrome001() {
         String input = "madam";
         Boolean result;
-
         result = isPalyndrom(input);
         Assert.assertTrue(result);
     }
-
     @Test
     public void testPalyndrome002() {
         String input = "asdfadsf";
         Boolean result;
-
         result = isPalyndrom(input);
         Assert.assertFalse(result);
     }
-
-
-
-
     private Boolean isPalyndrom(String input) {
         boolean result;
         String reversedInput = reverseInput(input);
@@ -59,10 +48,7 @@ public class CodeEx1 {
 
         return result;
     }
-
     private String reverseInput(String input) {
         return new StringBuffer(input).reverse().toString();
     }
-
-
 }
